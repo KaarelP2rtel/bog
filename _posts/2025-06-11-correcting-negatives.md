@@ -13,7 +13,7 @@ After a few more *\*sighs\** I went across my scanning setup back and forth excl
 
 ### Fixing with color correction, exposure and masks
 
-At first I tried to correct the cast using a the color correction module and the exposure module both with a gradient mask. This worked but dialing in the settings and the mask was tedious work and the result was still not great. Also the same settings did not work for other images meaning that each photo would have to be dialed in separately. Not good.
+At first I tried to correct the cast using the color correction module and the exposure module both with a gradient mask. This worked but dialing in the settings and the mask was tedious work and the result was still not great. Also the same settings did not work for other images meaning that each photo would have to be dialed in separately. Not good.
 
 I then had the idea to scan an empty section of the to film visualize the unevenness. Doing this made the issue quite obvious:
 
