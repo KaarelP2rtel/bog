@@ -1,7 +1,8 @@
----
-title: Bog
----
 {% for post in site.posts %}
-  <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-  <p>{{ post.excerpt }}</p>
+  <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
 {% endfor %}
+---
+
+[This page on github](https://github.com/KaarelP2rtel/bog)
+
+[My email](mailto:kaarelp2rtel@gmail.com)
