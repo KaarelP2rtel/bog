@@ -30,16 +30,15 @@ Here is what I eventually came up with: Using the composite module with a unifor
 
 First take the base image, Disable ***sigmoid*** and ***exposure*** and ***crop*** out any scanner edges.
 
-~~Apply a ***blurs*** with linearity=0 and radius=64px.
-This creates a nice even gradient with any dust and imperfections smoothed out. Keep in mind that [the blurs module is quite computationally expensive](https://docs.darktable.org/usermanual/3.8/en/module-reference/processing-modules/blurs/#caveats) so the radius should be no more than needed~~.
-Turns out that [blurs is ignored by the composite module](https://github.com/darktable-org/darktable/issues/18947).
-One workaround is to export the mask image into a 32 bit JPEG XL and then re-import that as the mask to be used but that messes up the mask a bit.
+Apply a ***blurs*** with linearity=0 and radius=32px.
+This turns the image into a nice even gradient with any dust and imperfections smoothed out. Keep in mind that [the blurs module is quite computationally expensive](https://docs.darktable.org/usermanual/3.8/en/module-reference/processing-modules/blurs/#caveats) so the radius should be no more than needed.
+It's also a good idea to save the history stack of this image into a style that can later be used on other rolls of film.
 
 ![](/images/correcting-negatives/mask.jpg)
-Also a good idea is to save the history stack of this image into a style that can later be used on other rolls of film.
 
+Next take your scanned negative and move the ***blurs*** module to be begininning of the pipeline. This is needed because [there is a quirk in how the composite module operates.](https://github.com/darktable-org/darktable/issues/18947#issuecomment-2967586924). If the blurs module is not moved then the previously applied blur will be ignored by the composite module. The mask will still work but it will not be blurred.
 
-Next take your scanned negative and enable ***composite***, select the mask as the image and select the ***uniform blend mask*** with mode ***divide***. Move the composite module to the beginning of the pipeline.
+After this is done enable the ***composite***, select the mask as the image and select the ***uniform blend mask*** with mode ***divide***. Move the composite module to the beginning of the pipeline.
 
 **Important:** The ***composite*** module must be **before** the ***orientation*** and ***rotation*** modules in the pipeline. Not doing this would cause the mask to be applied in the wrong orientation to the image.
 
@@ -48,7 +47,7 @@ Next take your scanned negative and enable ***composite***, select the mask as t
 
 And done!
 
-This masking also cancels out the color of the film base meaning that now negadoctor can be applied by just setting  "100%" on all three of the Red, Green and Blue components. This is nice because the history stack of this image can now also be saved into a style without having to manually pick the film base for each image. Just keep in mind that when you save the style, the mask image for the composite is also saved into the style and when you use the style on a new set of scans, you will have to manually select the new mask from the new scans on the first image. After selecting the image the composite module can just be copied to the other images though.
+This masking also cancels out the color of the film base meaning that now negadoctor can be applied by just setting  "100%" on all three of the Red, Green and Blue components. This is nice because the history stack of this image can now also be saved into a style without having to manually pick the film base for each image. Just keep in mind that when you save the style, the mask image for the composite will have to be manually selected when applying to a new set of scans. After selecting the image the for the first photo the module can just be copied to the other images though.
 
 ![](/images/correcting-negatives/negadoctor.jpg)
 *This is by far not the final image I would be happy with. The point is to show that the uneven color cast is gone.*
@@ -60,5 +59,3 @@ One way to confirm that this method *actually* works is to just set the composit
 *The fulcrum slider now acts like a basic brightness slider which I dialed down a bit as otherwise the image was almost pure white.*
 
 The waveform is now a perfectly straight line - no vignetting, no color shifts.  You can even still see all the dust and imperfections on the baseline image. Neat!
-
-But wait, why is the dust now doubled? [Yeah ._.](https://github.com/darktable-org/darktable/issues/18947)
