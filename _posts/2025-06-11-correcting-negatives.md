@@ -44,12 +44,11 @@ And done!
 This masking also cancels out the color of the film base meaning that now negadoctor can be applied by just setting  "100%" on all three of the Red, Green and Blue components. This is nice because the history stack of this image can now also be saved into a style without having to manually pick the film base for each image. Just keep in mind that when you save the style, the mask image for the composite is also saved into the style and when you use the style on a new set of scans, you will have to manually select the new mask from the new scans on the first image. After selecting the image the composite module can just be copied to the other images though.
 
 ![](/images/correcting-negatives/negadoctor.jpg)
-*This actually still had some global color casting but negadoctor corrections cleared that out.*
+*This is by far not the final image I would be happy with. The point is to show that the uneven color cast is gone.*
 
 ### Confirming the results
 
-One way to confirm that this method *actually* works is to just set the composite mask onto the same  baseline image. *Well actually a copy of the baseline image*
-
+One way to confirm that this method *actually* works is to just set the composite mask onto a copy of the baseline image.
 ![](/images/correcting-negatives/confirmation.jpg)
 *The fulcrum slider now acts like a basic brightness slider which I dialed down a bit as otherwise the image was almost pure white.*
 
