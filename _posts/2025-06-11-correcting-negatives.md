@@ -28,11 +28,18 @@ My first idea was to try and calibrate for this using various masks and modules 
 
 Here is what I eventually came up with: Using the composite module with a uniform blend mask with the "divide" mode. Here is how:
 
-First take the base image, ***crop*** out the edges and apply a ***blur*** with linearity=0 and radius=128px.  This creates a nice even gradient with any dust and imperfections smoothed out. Disable ***sigmoid*** and ***exposure***. Also a good idea is to save the history stack of this image into a style that can later be used on other rolls of film.
+First take the base image, Disable ***sigmoid*** and ***exposure*** and ***crop*** out any scanner edges.
+
+~~Apply a ***blurs*** with linearity=0 and radius=64px.
+This creates a nice even gradient with any dust and imperfections smoothed out. Keep in mind that [the blurs module is quite computationally expensive](https://docs.darktable.org/usermanual/3.8/en/module-reference/processing-modules/blurs/#caveats) so the radius should be no more than needed~~.
+Turns out that [blurs is ignored by the composite module](https://github.com/darktable-org/darktable/issues/18947).
+One workaround is to export the mask image into a 32 bit JPEG XL and then re-import that as the mask to be used but that messes up the mask a bit.
 
 ![](/images/correcting-negatives/mask.jpg)
+Also a good idea is to save the history stack of this image into a style that can later be used on other rolls of film.
 
-Next take your scanned negative and enable ***composite***, select the previously created mask as the image and select the ***uniform blend mask*** with mode ***divide***. Move the composite module to the beginning of the pipeline.
+
+Next take your scanned negative and enable ***composite***, select the mask as the image and select the ***uniform blend mask*** with mode ***divide***. Move the composite module to the beginning of the pipeline.
 
 **Important:** The ***composite*** module must be **before** the ***orientation*** and ***rotation*** modules in the pipeline. Not doing this would cause the mask to be applied in the wrong orientation to the image.
 
@@ -52,4 +59,6 @@ One way to confirm that this method *actually* works is to just set the composit
 ![](/images/correcting-negatives/confirmation.jpg)
 *The fulcrum slider now acts like a basic brightness slider which I dialed down a bit as otherwise the image was almost pure white.*
 
-The waveform is now a perfectly straight line - no vignetting, no color shifts.  You can even still see all the dirt and imperfections on the baseline image. Neat!
+The waveform is now a perfectly straight line - no vignetting, no color shifts.  You can even still see all the dust and imperfections on the baseline image. Neat!
+
+But wait, why is the dust now doubled? [Yeah ._.](https://github.com/darktable-org/darktable/issues/18947)
