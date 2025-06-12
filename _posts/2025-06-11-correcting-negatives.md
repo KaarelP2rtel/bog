@@ -5,7 +5,7 @@ title: Correcting for an unevenly lit film scan with Darktable.
 ![](/images/correcting-negatives/combined.jpg)
 *The scan on the left has a color cast caused by an uneven backlight. In this post we will correct for it using a scan of an empty section of film.*
 ### Intro
-Following the lead of  [Scanlight by jackw01](https://github.com/jackw01/scanlight) I built myself a narrowband RGB light source using a [cheap RGB LED panel from AliExpress](https://www.aliexpress.com/item/1005005692242934.html), a barely functioning 3D printer, a diffuser sheet scavenged from a broken monitor and several burn wounds worth of hot glue. Armed with this new device I enthusiastically proceeded to scan all of the unscanned film that I had acquired up to that point but after processing a few of them in Darktable I noticed a slight color cast on the edge of one of the images. In fact, *all 15 rolls* had the same color cast.
+Following the advice of  [Scanlight by jackw01](https://github.com/jackw01/scanlight) I built myself a narrowband RGB light source using a [cheap RGB LED panel from AliExpress](https://www.aliexpress.com/item/1005005692242934.html), a barely functioning 3D printer, a diffuser sheet scavenged from a broken monitor and several burn wounds worth of hot glue. Armed with this new device I enthusiastically proceeded to scan all of the unscanned film that I had acquired up to that point but after processing a few of them in Darktable I noticed a slight color cast on the edge of one of the images. In fact, *all 15 rolls* had the same color cast.
 
 *\*sigh\**
 
